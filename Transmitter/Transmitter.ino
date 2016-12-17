@@ -7,7 +7,7 @@
 #define RESENDS 3                // how many times each message is repeated
 #define RESEND_INTERVAL 1.5      // [sec] how long to wait between resend attempts 
 #define SEND_INTERVAL 300        // [sec] how long to wait in between transmissions
-#define MESS_MAX_LEN 50          // maximum length of 433MHz message
+#define MESS_MAX_LEN 63          // maximum length of 433MHz message
 #define TEMP_PIN 7               // OneWire Pin to sensors (custom shield)
 #define SS_TX 4                  // serial TX pin for HC-12 433MHz transmitter. Connect to HC-12 RX!!
 #define SS_RX 5                  // serial RX pin for HC-12 433MHz transmitter. Connect to HC-12 TX!!
@@ -82,7 +82,7 @@ void loop()
     // check if values make sense and transmit if they do 
     if(t1 > -50)
     {
-      Message = String("mid=") + message_id + String(",loc=sensordata_brunnen,t=") + t1;
+      Message = String("mid=") + message_id + String(",loc=sensordata_carport,t=") + t1;
       crc = str_crc(Message);
       Message += String(",crc=") + String(crc);
       Message.toCharArray(message,MESS_MAX_LEN);
@@ -99,7 +99,7 @@ void loop()
     }
    else
     {
-      Message = String("mid=") + message_id + String(",loc=sensordata_brunnen,t=error");
+      Message = String("mid=") + message_id + String(",loc=sensordata_carport,t=error");
       crc = str_crc(Message);
       Message += String(",crc=") + String(crc);
       Message.toCharArray(message,MESS_MAX_LEN);
@@ -114,7 +114,7 @@ void loop()
     //************************************************************************************
     if(t2 > -50)
     {
-      Message = String("mid=") + message_id + String(",loc=sensordata_carport,t=") + t2;
+      Message = String("mid=") + message_id + String(",loc=sensordata_brunnen,t=") + t2;
       crc = str_crc(Message);
       Message += String(",crc=") + String(crc);
       Message.toCharArray(message,MESS_MAX_LEN);
@@ -131,7 +131,7 @@ void loop()
     }
     else
     {
-      Message = String("mid=") + message_id + String(",loc=sensordata_carport,t=error");
+      Message = String("mid=") + message_id + String(",loc=sensordata_brunnen,t=error");
       crc = str_crc(Message);
       Message += String(",crc=") + String(crc);
       Message.toCharArray(message,MESS_MAX_LEN);

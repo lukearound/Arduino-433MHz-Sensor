@@ -11,9 +11,10 @@
 
 
 unsigned long str_crc(String message);
-
-  
-
+boolean crcCheckMessage(String &msg);
+void extractParameter(String &retString, String &msg, String &param);  
+long string2long(String &str);
+void adjustDBtable(String &Sdb_table);
 #endif
 
 
