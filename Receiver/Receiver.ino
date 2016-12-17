@@ -21,7 +21,7 @@
 #define HC_RX_PIN 11 //50
 #define LED_PIN 13
 
-#define DEBUG 1                  // set to 1 to get Serial debug output
+#define DEBUG 0                  // set to 1 to get Serial debug output
 #define MESS_MAX_LEN 50          // maximum length of 433MHz message
 
 
@@ -50,6 +50,8 @@ char server[] = "mainpi";
 
 void setup() 
 {
+  delay(1000);  // wait for hardware to get ready
+  
   if(DEBUG) Serial.begin(9600); // Start the hardware serial port
   
   // disable SD card
@@ -71,6 +73,7 @@ void setup()
   pinMode(LED_PIN, OUTPUT);  // on board LED
   
   hc12.begin(9600); // Start the software serial port
+  delay(1000);  // wait for hardware to get ready
  
   // setup of the hc12 module
   digitalWrite(HC_SET_PIN,LOW); // enter AT command mode
